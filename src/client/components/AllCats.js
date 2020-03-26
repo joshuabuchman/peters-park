@@ -12,23 +12,40 @@ import CatCard from './CatCard'
 // don't worry about it too much
 export class DisconnectedAllCats extends React.Component {
 
-  render() {
+  render() 
+  {
     return (
       <div className='all-cats'>
+        <h1>Peter's Park</h1>
+        <div>
+        {
+            this.props.cats.map( cat =>
+            {
+              return(
+                <CatCard key = {cat.id} id = {cat.id} name = {cat.name} />
+              )
+            })
+        }
+        </div>
       </div>
     )
   }
 }
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => 
+{
   return {
-
+    cats: state.cats
   }
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => 
+{
   return {
-
+    goGetCats: () => 
+    {
+      dispatch()
+    }
   }
 }
 

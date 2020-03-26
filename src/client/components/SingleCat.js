@@ -14,21 +14,49 @@ export class DisconnectedSingleCat extends React.Component {
   render() {
     return (
       <div className='single-cat'>
-
+        <h2>{ this.props.name }</h2>
+        <img src = { this.props.imageUrl }></img>
+        <ul className = 'toys'>
+        { 
+          this.props.toyRatings.map( toy =>
+          {
+              return(<li key = {toy.rating} id = {toy.rating} class = 'toys'>{ toy.name }</li>)
+          })
+        }
+        </ul>
+        <div className = 'friends'>
+          <h3>Friends</h3>
+          <ul>
+          {
+            this.props.friends.map( friend =>
+            {
+                return(
+                  <li>
+                    <CatCard key = {friend.id} id = {friend.id} name = {friend.name} />
+                  </li>
+                )
+            })
+          }
+          </ul>
+        </div>
       </div >
     )
   }
 }
 
 export const mapStateToProps = (state) => {
+  console.log(state.cat.stuff.you.be)
   return {
-
+    cat: [...state.cat, state.cat.stuff.you.be]
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-
+    goGetCat: () => 
+    {
+      dispatch()
+    }
   }
 }
 
